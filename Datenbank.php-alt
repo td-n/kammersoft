@@ -1,0 +1,85 @@
+<html>
+<head>
+<?php include ("#authenticated.inc.php"); ?>
+<?php include ("#mysql.inc.php"); ?>
+<?php include ("#log.inc.php") ?>
+<?php
+if ($_SESSION['lesen']==0)
+{
+    ?><meta http-equiv="refresh" content="0; URL=forbitten-all.php" /><?php
+}
+?>
+<?php
+if ($_SESSION['schreiben']==0)
+{
+    ?><meta http-equiv="refresh" content="0; URL=forbitten.php" /><?php
+}
+?>
+<title>Auswahl Wirk - oder Spieldatenbank</title>
+</head>
+<big><big><big>
+Auswahl Wirk - oder Spieldatenbank  <br>
+</big></big></big>
+<?php
+echo "Benutzer :", $_SESSION['kname'], "<br>";
+$heut = date("d.m.Y");  //heutuger Datum
+echo $heut;
+$l="Ausgeber ge&ouml;ffnet";
+logsch ($l);
+/*
+while (list ($key, $value) = each ($_REQUEST))                      //alle Rückgabewerte auslesen
+{
+  echo $key." => ".$value."<br />\n";
+}
+*/
+
+$sql = mysql_query("SELECT * FROM `conf` WHERE `wert` = 'datenbank'");         //Tabelle conf auswählen
+while($ds= mysql_fetch_object($sql))
+{
+    $db = $ds->was;
+}
+//echo $db;
+if ($db=='tauckerkammer')
+{
+    ?> 
+    "<big><big><font color="#FF0000"><br>Wirkdatenbank aktiv"</font></big></big> ;
+    <?php 
+}
+if ($db=='tauckerkammers')
+{
+    ?>
+    "<big><big><font color="#FF0000"><br>Spieldatenbank aktiv"</font></big></big> ;
+    <?php
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>
+<br>
+<a href="start1.php" >zur &Uuml;bersicht </a>
+</body>
+</html>
