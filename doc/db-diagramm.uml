@@ -1,0 +1,132 @@
+'
+' You can view this file using PlantUML:
+' 	http://plantuml.sourceforge.net
+'
+@startuml
+
+object ausleihe {
+	ID : int
+	IDGeraet : int
+	AuslNmae : varchar(25)
+	Ausgeber : varchar(25)
+	Ruecknehmer : varchar(25)
+	auslgrund : varchar(35)
+	Verschiedenes : varchar(65)
+	abgeschlAusleihe : tinyint
+	Datum_von : date
+	Datum_bis : date
+	Datum_rueck : date
+	jahr : int
+	lfnr : int
+}
+
+geraete -- ausleihe 
+
+object auslgrund {
+	id : int
+	auslgr : varchar(35)
+}
+
+object benutzer {
+	id : int
+	Name : varchar(30)
+}
+
+object conf {
+	id : int
+	wert : text
+	was : text
+}
+
+object geraete {
+	ID : int
+	Typ : int
+	RegNR : int
+	Hersteller : varchar(50)
+	Bemerk : varchar(300)
+	Rep_notw : tinyint
+	TUEV : date
+	ausgeliehen : tinyint
+	anz_tauchg : int
+	res : tinyint
+	ges_tauchg : int
+	kaufjahr : int
+}
+
+geraete -- typ  
+
+object info {
+	ID : int
+	ID_Geraet : int
+	Maengel : varchar(125)
+	Rueckgeber : varchar(25)
+	erl : int
+	Datum : date
+}
+
+object log {
+	id : int
+	eintrag : varchar(200)
+	name : varchar(30)
+	time : timestamp
+}
+
+object paket {
+	id : int
+	paketnr : varchar(5)
+	typ : varchar(60)
+	regnr : varchar(5)
+	geraeteid : varchar(5)
+	verschiedenes : varchar(60)
+}
+
+object res {
+	id : int
+	gid : int
+	von : date
+	bis : date
+	name : varchar(35)
+	grund : varchar(35)
+}
+
+
+geraete -- res
+
+object typ {
+	ID : int
+	Typ : varchar(25)
+}
+
+object user {
+	ID : int
+	Name : varchar(30)
+	Passwort : varchar(100)
+	lesen : int
+	schreiben : int
+	kname : text
+}
+
+object var {
+	id : int
+	ingid : int
+	mang : varchar(180)
+	uid : int
+	zeile : int
+	gida : int
+	user : varchar(50)
+	gernr : text
+	rdat : year
+	rdat2 : text
+}
+
+object zusatz {
+	id : int
+	typ : varchar(60)
+	regnr : varchar(11)
+	hersteller : varchar(30)
+	bemerkung : varchar(60)
+}
+
+
+
+@enduml
